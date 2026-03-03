@@ -3,23 +3,23 @@ import Image from "next/image";
 export default function Home() {
 
   const scrims = [
-    { team: "White Team", rank: "Diamond", region: "NA", time: "8PM" },
-    { team: "Sage Team", rank: "GrandMaster", region: "EU", time: "Tomorrow 6PM" },
+    { region: "NA", platform: "PC", team: "White Team", range: "3.5k", time: "8PM" },
+    { region: "EU", platform: "Console", team: "Sage Team", range: "2.3k", time: "Tomorrow 6PM" },
   ];
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-10">
+    <main className="min-h-screen bg-gray-600 text-white flex flex-col items-center p-10">
       <h1 className="text-4xl font-bold mb-6">
         Overwatch Scrim Board
       </h1>
 
-      <button className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg font-semibold transition">
+      <button className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-lg font-semibold transition mb-8">
         Create Scrim
       </button>
 
       
       {/* Big rectangle container */}
-      <div className="w-full max-w-3xl bg-gray-800 rounded-xl p-6 shadow-lg">
+      <div className="w-full max-w-3xl bg-gray-800 rounded-xl p-6 shadow-2xl/90">
         <h2 className="text-2xl font-semibold mb-4">Available Scrims</h2>
 
         {scrims.map((scrim) => (
@@ -29,7 +29,7 @@ export default function Home() {
           >
             <div className="font-bold">{scrim.team}</div>
             <div className="text-sm text-gray-300">
-              {scrim.rank} • {scrim.region} • {scrim.time}
+              {scrim.region} • {scrim.platform} • {scrim.range} • {scrim.time}
             </div>
           </div>
         ))}
