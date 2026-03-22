@@ -22,6 +22,20 @@ export default function Home() {
       <div className="w-full max-w-3xl bg-gray-800 rounded-xl p-6 shadow-2xl/90">
         <h2 className="text-2xl font-semibold mb-4">Available Scrims</h2>
 
+        <select className="w-48 bg-gray-900 text-white px-4 py-2 rounded mb-3 mr-5">
+          <option>All Ranks</option>
+          <option>GM</option>
+          <option>Masters</option>
+          <option>Diamond</option>
+        </select>
+
+        <select className="bg-gray-900 text-white px-4 py-2 rounded mb-3 mr-5">
+          <option disabled>Time Slot</option>
+          <option>5PM - 7PM</option>
+          <option>7PM - 9PM</option>
+          <option>Other</option>
+        </select>
+
         {scrims.map((scrim) => (
           <div
             key={scrim.team}
