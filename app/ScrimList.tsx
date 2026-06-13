@@ -12,10 +12,16 @@ type Scrim = {
 
 export default function ScrimBoard({ scrims }: { scrims: Scrim[] }) {
   const [selectedRegion, setSelectedRegion] = useState("Any");
+  const [selectedTime, setSelectedTime] = useState("Any");
+
+  const timeOptions = ["Any", ...new Set(scrims.map((scrim) => scrim.time))];
 
   const filteredScrims = scrims.filter((scrim) => {
-    if (selectedRegion === "Any") return true;
-    return scrim.region === selectedRegion;
+    const matchesRegion =
+      selectedRegion === "Any" || scrim.region === selectedRegion;
+    const matchesTime = selectedTime === "Any" || scrim.time === selectedTime;
+
+    return matchesRegion && matchesTime;
   });
 
   return (
@@ -39,11 +45,16 @@ export default function ScrimBoard({ scrims }: { scrims: Scrim[] }) {
         <option>Diamond</option>
       </select>
 
-      <select className="bg-gray-900 text-white px-4 py-2 rounded mb-3 mr-5">
-        <option>Time Slot</option>
-        <option>5PM - 7PM</option>
-        <option>7PM - 9PM</option>
-        <option>Other</option>
+      <select
+        className="bg-gray-900 text-white px-4 py-2 rounded mb-3 mr-5"
+        value={selectedTime}
+        onChange={(event) => setSelectedTime(event.target.value)}
+      >
+        {timeOptions.map((time) => (
+          <option key={time} value={time}>
+            {time === "Any" ? "Any Time" : time}
+          </option>
+        ))}
       </select>
 
       {filteredScrims.map((scrim) => (
